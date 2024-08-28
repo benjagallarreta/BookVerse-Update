@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factura</title>
+</head>
+<body>
+    <h1>Factura</h1>
+    <table> 
+        <tbody>
+            {% for libro in libros %}
+                <div>libro: {{libro.libro}}</div>
+                <div>precio:{{libro.precio}}</div>
+                <div>cantidad:{{libro.cantidad}}</div> 
+                <p></p>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

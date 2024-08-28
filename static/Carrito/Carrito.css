@@ -1,0 +1,93 @@
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+}
+
+input.form-check-input[type="radio"] {
+    /* Estilo por defecto */
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    position: relative;
+}
+
+input.form-check-input[type="radio"]:checked {
+    /* Estilo cuando está seleccionado */
+    background-color: #132A13 !important;
+    border: 1px solid #132A13 !important;
+}
+
+input.form-check-input[type="radio"]:checked::after {
+    /* Marca de verificación */
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.btn-green {
+    color: #132A13;
+    border-color: #132A13;
+    background-color: transparent; /* Agrega esto si el fondo sigue siendo visible */
+}
+
+.btn-green:hover {
+    color: #fff; /* Color del texto al pasar el cursor */
+    background-color: #132A13; /* Fondo verde al pasar el cursor */
+    border-color: #132A13; /* Borde verde al pasar el cursor */
+}
+
+.btn-green:focus, .btn-green:active {
+    color: #fff;
+    background-color: #132A13;
+    border-color: #132A13;
+    box-shadow: none; /* Elimina el sombreado al hacer clic */
+}
+
+.btn-link.btn-green {
+    color: #132A13;
+    border-color: #132A13;
+    background-color: transparent; /* Fondo transparente si es necesario */
+}
+
+.btn-link.btn-green:hover {
+    color: #fff;
+    background-color: #132A13;
+    border-color: #132A13;
+}
+
+/* Oculta las flechas en el campo de número para todos los navegadores */
+
+/* Estilo estándar para la propiedad */
+input[type=number] {
+    -webkit-appearance: none; /* Chrome, Safari, Edge (antiguos) */
+    -moz-appearance: textfield; /* Firefox */
+    appearance: none; /* Estándar */
+}
+
+/* Oculta las flechas en los campos de número en WebKit y Blink */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Estilo para centrar el número en el campo de entrada */
+input[type=number] {
+    -webkit-appearance: none; /* Chrome, Safari, Edge (antiguos) */
+    -moz-appearance: textfield; /* Firefox */
+    appearance: none; /* Estándar */
+    text-align: center; /* Centra el texto */
+}
+
