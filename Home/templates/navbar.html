@@ -1,0 +1,63 @@
+{% load static %}
+
+<link href="{% static 'Home/navbar.css' %}" rel="stylesheet"/> 
+
+<nav class="barra-navegacion">
+
+    <div class="contenedor">
+
+        <a class="navbar-titulo" href="/">BookVerse</a>
+
+        <ul class="navbar-list">
+            <li class="nav-items">
+                <button class="boton_login" href="#">Géneros</button>
+                <ul class="dropdown-generos">
+                    <li><a href="{% url 'libros_por_genero' genero='Historical Fiction' %}">Ficción Histórica</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='LGBTQ+' %}">LGBTQ+</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Science Fiction' %}">Ciencia Ficción</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Romance' %}">Romance</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Mystery' %}">Misterio</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Contemporary Fiction' %}">Ficción Contemporánea</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Fantasy' %}">Fantasía</a></li>
+                    <li><a href="{% url 'libros_por_genero' genero='Horror' %}">Horror</a></li>
+                </ul>                
+            </li>
+        </ul>
+
+        <!--barra de busqueda-->
+        <form class="search-bar" method="get" action="{% url 'home' %}">
+            <input class="search-input" type="text" placeholder="Buscar..." name="buscar">
+            <button class="search-button" type="submit">Buscar</button>
+        </form>     
+
+        
+        <div class="cart">
+            <button onclick="window.location.href='{% url 'carrito' %}'" class="boton_login">Carrito</button>
+        </div>
+        
+
+        <div>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="boton_login" type="submit">Cerrar Sesión</button>
+                </form>
+            {% else %}
+                <button onclick="window.location.href='{% url 'login' %}'" class="boton_login">Iniciar Sesión</button>
+            {% endif %}
+        </div>    
+
+        <ul class="navbar-list">
+            <li class="nav-items">
+                <button class="boton_login" href="#">Mi Perfil</button>
+                <ul class="dropdown-generos">
+                    <li><a href="{% url 'perfil_usuario' %}">Mi Perfil</a></li>
+                    <li><a href="">Mi Lista de Deseados</a></li>
+                </ul>                
+            </li>
+        </ul>
+
+
+    </div>
+
+</nav>

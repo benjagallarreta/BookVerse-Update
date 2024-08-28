@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+4FmrP6Ph/6zHO3/bboV5B/02k8Zg/YfFjFf3I5JiS+teRY" crossorigin="anonymous">
+<link href="{% static 'Home/Home.css' %}" rel="stylesheet" /> 
+
+<head>
+    <title>BookVerse | Home</title>
+</head>
+
+<body>
+    <!-- Header-->
+    <header class="bg-dark py-5" style="background-image: url('{% static 'imagenes/library_background.jpg' %}');">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">¡BookVerse!</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Hay crímenes peores que quemar libros. Uno de ellos, es no leerlos. - Ray Bradbury</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for libro in libros %}
+                <div class="col mb-5" id="libro-{{ libro.isbn }}">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ libro.portada }}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder"> <a href=> {{ libro.titulo }} </a> </h5>
+                                <h6>{{ libro.autor }}</h6>
+                                <!-- Product price-->
+                                {{ libro.precio}}
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <form action="{% url 'agregar_libro' isbn=libro.isbn %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-dark mt-auto">Agregar al carrito</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                {% endfor %}
+            </div>
+        <!-- Paginación -->
+        <div class="pagination d-flex justify-content-center mt-4">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-outline-dark mt-auto">&laquo; Primera</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-dark mt-auto">Anterior</a>
+                {% endif %}
+
+                <span class="btn btn-outline-dark mt-auto">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-dark mt-auto">Siguiente</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-dark mt-auto">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    </div>
+</section>
+
+</body>
+{% endblock %}

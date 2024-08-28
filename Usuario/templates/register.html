@@ -1,0 +1,48 @@
+{% load static %}
+{% block content %}
+
+<head>
+    <title>BookVerse | Registrarse</title>
+    <link rel="stylesheet" href="{% static 'Usuario/signin.css' %}">
+</head>
+
+<body style="background-image: url({% static 'Imagenes/library_background.jpg' %})">
+
+    <div class="main">
+        <section class="signup">
+            <div class="container" >
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        {% csrf_token %}
+                        <h2 class="form-title">Crear Cuenta</h2>
+                        <div class="form-group">
+                            {{ form.username.errors }}
+                            <input type="text" class="form-input" name="username" id="username" placeholder="Nombre de usuario" value="{{ form.username.value|default_if_none:'' }}">
+                        </div>
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Correo Electrónico" value="{{ form.email.value|default_if_none:'' }}">
+                        </div>
+                        <div class="form-group">
+                            {{ form.password1.errors }}
+                            <input type="password" class="form-input" name="password1" id="password1" placeholder="Contraseña">
+                        </div>
+                        <div class="form-group">
+                            {{ form.password2.errors }}
+                            <input type="password" class="form-input" name="password2" id="password2" placeholder="Repita su Contraseña">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Registrarse">
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Ya tiene una cuenta? <a href="{% url 'login' %}" class="loginhere-link">Iniciar Sesión</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+{% endblock %}
